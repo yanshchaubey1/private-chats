@@ -1,0 +1,67 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #f4f4f4;
+  margin: 0;
+}
+
+header {
+  background-color: black;
+  color: red;
+  padding: 20px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 3rem;
+}
+
+h2 {
+  margin-top: 20px;
+}
+
+/* Popup Styles */
+#popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: red;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+#popup h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+#exploreBtn {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#exploreBtn:hover {
+  background-color: darkred;
+}
+
+/* Video Container */
+#videoContainer {
+  margin-top: 30px;
+}
+
+video {
+  width: 320px;
+  height: 240px;
+  margin: 10px;
+}
