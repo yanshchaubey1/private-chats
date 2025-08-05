@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat - Yansh & Akansha</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f0f0f0; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+        #chat { width: 100%; max-width: 600px; background: white; border: 1px solid #ccc; padding: 10px; height: 400px; overflow-y: scroll; margin-bottom: 10px; }
+        #form { display: flex; width: 100%; max-width: 600px; }
+        #input { flex: 1; padding: 10px; font-size: 16px; }
+        #send { padding: 10px; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <h2>Welcome Yansh & Akansha</h2>
+    <div id="chat"></div>
+    <form id="form">
+        <input id="input" autocomplete="off" placeholder="Type a message..." /><button id="send">Send</button>
+    </form>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+        const form = document.getElementById('form');
+        const input = document.getElementById('input');
+        const chat = document.getElementById('chat');
+        
+        const name = prompt("Enter your name (Yansh or Akansha):");
+        socket.emit('join', name);
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (input.value) {
+                socket.emit('chat message', { name, message: input.value });
+                input.value = '';
+            }
+        });
+
+        socket.on('chat message', function(msg) {
+            const item = document.createElement('div');
+            item.textContent = msg.name + ": " + msg.message;
+            chat.appendChild(item);
+            chat.scrollTop = chat.scrollHeight;
+        });
+    </script>
+</body>
+</html>
